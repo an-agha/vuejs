@@ -7,6 +7,16 @@
     <script src="https://unpkg.com/vue@3.0.2"></script>
 
     <title>vue js</title>
+    <style>
+        .mouse-events {
+            width: 400px;
+            display: inline-block;
+            padding: 50px 0;
+            text-align: center;
+            background-color: #abc;
+            margin: 2VW;
+        }
+    </style>
 </head>
 <body>
     <h1>Hello</h1>
@@ -26,7 +36,11 @@
         </button>
         <div v-show="showBook">books</div>
         <div v-show="!showBook">Not showing books</div>
-        
+        <!-- mouse events -->
+        <div class="mouse-events" v-on:mouseover="handleEvent($event, 4)">mouseover (enter)</div>
+        <div class="mouse-events" @mouseLeave = "handleEvent">mouseleave()</div>
+        <div class="mouse-events" @dblclick="handleEvent">DoubleClick</div>
+        <div class="mouse-events" @mousemove = "handleMousemove">position - {{x}} {{y}}</div>
     </div>
 
 <script src="app.js"></script>
