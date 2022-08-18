@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css');
+        *{
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        .to-do-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .to-do-input {
+            width: 40%;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+        }
+        .to-do-input > input {
+            width: 80%;
+            height: 5vh;
+            background-color: rgb(216, 216, 216);
+            border: none;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            border-radius: 5px 0 0 5px;
+        }
+        .to-do-input > button {
+            width: 20%;
+            height: 5vh;
+            background-color: #fca;
+            border: none;
+            border-radius: 0 5px 5px 0;
+        }
+        .list {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2vh;
+        }
+        ul {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            width: 100%;
+            height: 5vh;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgb(227, 255, 250);
+        }
+        li span {
+            width: 80%;
+        }
+        li fa-solid {
+            width: 5%;
+        }
+        .done {
+            color: #FA0;
+        }
+        .not-done {
+            color: #0af;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>To Do List</h2>
+        <div class="to-do-input">
+            <input type="text" placeholder="Add Items" v-model="newItem" @keypress.enter="addNewItem">
+            <button @click="addNewItem">Add Item</button>
+        </div>
+        <ul>
+            <li v-for="item in list" :class="item.done ? 'done' : 'not-done'">
+                <span>
+                    {{ item.text }}
+                </span> 
+                <input type="checkbox" v-model="item.done">
+                <i class="fa-solid fa-trash" @click="deleteItem(item.id)"></i>
+            </li>
+        </ul>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

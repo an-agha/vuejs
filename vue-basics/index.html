@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+
+    <title>vue js</title>
+    <style>
+        .mouse-events {
+            width: 400px;
+            display: inline-block;
+            padding: 50px 0;
+            text-align: center;
+            background-color: #abc;
+            margin: 2VW;
+        }
+        .counter {
+            display: flex;
+            align-items: center;
+            column-gap: 3vw;
+            background-color: blanchedalmond;
+        }
+        img {
+            width: 200px;
+        }
+        li {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items:center;
+            margin-bottom: 2vh;
+            background-color: rgb(194, 238, 255);
+            
+            padding:2vh 2vw;
+            box-sizing: border-box;
+        }
+        .fav {
+            background-color: rgb(231, 194, 255);
+        }
+        v-clock {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello</h1>
+    <div id="app" v-cloak>
+        
+        <div v-if="show">
+            <p>{{title}}</p>
+            <p>{{name}}</p>
+            <p>{{age}}</p>
+            <button v-on:click="age++">Increse Age</button>
+            <button v-on:click="age--">Decrease Age</button>
+            <p @click="changeTitle('hello')"> Change title</p> 
+
+            <ul > 
+                <li v-for="item in books" :class="{fav: item.isFav}" @click="toggleFav(item)">
+                    <!-- attribute binding -->
+                    <img :src="item.img" :alt="item.title">
+                    <h3>{{item.title}}</h3>
+                    <p>{{item.author}}</p>
+                </li>
+            </ul>
+
+
+        </div>
+        
+        <div v-else>
+            Njan 
+        </div>
+        <button @click.stop="showBook">
+            <span v-if="show">Hide Book</span>
+            <span v-else>Show Book</span>
+        </button>
+        <div v-show="showBook">books</div>
+        <div v-show="!showBook">Not showing books</div>
+        <!-- mouse events -->
+        <div class="mouse-events" v-on:mouseover="handleEvent($event, 4)">mouseover (enter)</div>
+        <div class="mouse-events" @mouseLeave = "handleEvent">mouseleave()</div>
+        <div class="mouse-events" @dblclick="handleEvent">DoubleClick</div>
+        <div class="mouse-events" @mousemove = "handleMousemove">position - {{x}} {{y}}</div>
+
+        <!-- counter -->
+        <div class="counter">
+            <div @click="count--">-</div>
+            <div>{{count}}</div>
+            <div @click="count++">+</div>
+            <input type="text" v-model="message">
+            {{ message }}
+        </div>
+
+
+        <!-- to do list -->
+        <!-- <div class="list">
+            <input type="text" placeholder="Item">
+            <ul>
+                <li>{{item}}</li>
+            </ul>
+        </div> -->
+
+
+    </div>
+
+<script src="app.js"></script>
+</body>
+</html>
